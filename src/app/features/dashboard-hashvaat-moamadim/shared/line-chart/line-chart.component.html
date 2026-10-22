@@ -1,0 +1,41 @@
+<section
+  class="line-chart"
+  [style.--gova-graf]="govaGraf">
+  <!-- מקרא מועמדים כמו בפיגמה: שם בצבע הקו + קו עם עיגול חלול -->
+  <ul class="line-chart__legend" *ngIf="sidrotLeMafteach.length > 0">
+    <li
+      class="line-chart__legend-item"
+      *ngFor="let sidra of sidrotLeMafteach">
+      <span
+        class="line-chart__legend-shem"
+        [style.color]="sidra.colorLeMoamad">
+        {{ sidra.shemMoamad }}
+      </span>
+      <svg
+        class="line-chart__legend-icon"
+        viewBox="0 0 32 12"
+        aria-hidden="true"
+        focusable="false">
+        <line
+          x1="2"
+          y1="6"
+          x2="30"
+          y2="6"
+          [attr.stroke]="sidra.colorLeMoamad"
+          stroke-width="2"
+          stroke-linecap="round"></line>
+        <circle
+          cx="16"
+          cy="6"
+          r="3.25"
+          fill="#fff"
+          [attr.stroke]="sidra.colorLeMoamad"
+          stroke-width="2"></circle>
+      </svg>
+    </li>
+  </ul>
+
+  <div class="line-chart__canvas-wrap">
+    <canvas #canvasGraf aria-label="גרף קו להשוואת מועמדים"></canvas>
+  </div>
+</section>

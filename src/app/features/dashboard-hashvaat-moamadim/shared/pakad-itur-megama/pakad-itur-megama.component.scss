@@ -1,0 +1,107 @@
+$color-border: #d1d5db;
+$color-text: #1f2937;
+$color-text-muted: #9ca3af;
+$color-bg: #ffffff;
+$color-focus: #4a77e5;
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+$radius-kartis: 0.875rem;
+$radius-sadeh: 0.625rem;
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  direction: rtl;
+  font-family: $font-family;
+}
+
+.pakad-itur-megama {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.25rem;
+  background: $color-bg;
+  border-radius: $radius-kartis;
+  box-shadow:
+    0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1),
+    0 0.0625rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.pakad-itur-megama__sadeh {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.375rem;
+  padding: 0.5rem 0.75rem;
+  background: $color-bg;
+  border: 0.0625rem solid $color-border;
+  border-radius: $radius-sadeh;
+  box-sizing: border-box;
+  cursor: text;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-within {
+    border-color: $color-focus;
+    box-shadow: 0 0 0 0.125rem rgba(74, 119, 229, 0.2);
+  }
+}
+
+.pakad-itur-megama__icon {
+  flex-shrink: 0;
+  color: $color-text-muted;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.pakad-itur-megama__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: right;
+
+  &::placeholder {
+    color: $color-text-muted;
+    opacity: 1;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  .pakad-itur-megama {
+    padding: 1.125rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pakad-itur-megama {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pakad-itur-megama {
+    padding: 0.875rem;
+  }
+
+  .pakad-itur-megama__sadeh {
+    min-height: 2.5rem;
+  }
+
+  .pakad-itur-megama__input {
+    font-size: 1rem; // מונע זום אוטומטי ב-iOS
+  }
+}

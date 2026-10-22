@@ -1,0 +1,117 @@
+<section class="panel-nivcharim">
+  <header class="panel-nivcharim__koteret">
+    <div class="panel-nivcharim__koteret-shura">
+      <i class="pi pi-users panel-nivcharim__icon-kvutza" aria-hidden="true"></i>
+      <h2 class="panel-nivcharim__koteret-text">
+        נבחרו
+        <span class="panel-nivcharim__kamut">({{ kamutNivcharim }} נבחרו)</span>
+      </h2>
+    </div>
+    <p class="panel-nivcharim__ramaaz">לחץ להוספה/הסרה · גרור לשינוי סדר</p>
+  </header>
+
+  <div
+    class="panel-nivcharim__tochen"
+    *ngIf="kamutNivcharim === 0">
+    <div class="panel-nivcharim__empty">
+      <i class="pi pi-user panel-nivcharim__empty-icon" aria-hidden="true"></i>
+      <p class="panel-nivcharim__empty-text">טרם נבחרו מועמדים</p>
+    </div>
+  </div>
+
+  <div
+    class="panel-nivcharim__reshima"
+    *ngIf="kamutNivcharim > 0"
+    cdkDropList
+    [cdkDropListData]="moamadimNivcharim"
+    (cdkDropListDropped)="onShinuiSeder($event)">
+    <div
+      class="kartis-moamad-nivchar"
+      *ngFor="let moamad of moamadimNivcharim; let i = index"
+      cdkDrag>
+      <button
+        type="button"
+        class="kartis-moamad-nivchar__handle"
+        cdkDragHandle
+        aria-label="גרור לשינוי סדר">
+        <svg
+          class="kartis-moamad-nivchar__grip"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false">
+          <circle cx="9" cy="12" r="1"></circle>
+          <circle cx="9" cy="5" r="1"></circle>
+          <circle cx="9" cy="19" r="1"></circle>
+          <circle cx="15" cy="12" r="1"></circle>
+          <circle cx="15" cy="5" r="1"></circle>
+          <circle cx="15" cy="19" r="1"></circle>
+        </svg>
+      </button>
+
+      <span
+        class="kartis-moamad-nivchar__mispar"
+        [style.background-color]="moamad.colorLeMoamad">
+        {{ i + 1 }}
+      </span>
+
+      <span
+        class="kartis-moamad-nivchar__shem"
+        [style.color]="moamad.colorLeMoamad">
+        {{ moamad.shemMale }}
+      </span>
+
+      <button
+        type="button"
+        class="kartis-moamad-nivchar__hasara"
+        aria-label="הסר מועמד"
+        (click)="onHasaratMoamad(moamad)">
+        <svg
+          class="kartis-moamad-nivchar__x"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <footer class="panel-nivcharim__footer">
+    <button
+      type="button"
+      class="panel-nivcharim__btn-hashvaa"
+      [disabled]="!canHatchilHashvaa"
+      (click)="onHatchalatHashvaa()">
+      <svg
+        class="icon-circle-check panel-nivcharim__btn-v"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="m9 12 2 2 4-4"></path>
+      </svg>
+      <span>התחל השוואה</span>
+    </button>
+    <p
+      class="panel-nivcharim__heara"
+      *ngIf="!canHatchilHashvaa">
+      יש לבחור לפחות {{ minKamutLeHashvaa }} מועמדים
+    </p>
+  </footer>
+</section>

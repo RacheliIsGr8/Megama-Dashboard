@@ -1,0 +1,129 @@
+<div class="ezor-hashvaa">
+  <div
+    class="ezor-hashvaa__toolbar"
+    *ngIf="mazigSinunim || mazigBorerTatzig || mazigBorerShanim">
+    <div class="ezor-hashvaa__sinunim" *ngIf="mazigSinunim">
+      <app-input-select
+        *ngIf="efsharuyotShana.length"
+        [koteret]="'שנה'"
+        [efsharuyot]="efsharuyotShana"
+        [bechirots]="bechirotsShana"
+        [tekstBecharHakol]="'בחר הכל'"
+        [tekstBitulHakol]="'בטל הכל'"
+        [tekstKolHaEfsharuyot]="'כל השנים'"
+        [isMazigErech]="true"
+        [sugIcon]="'none'"
+        (shinuiBechira)="onShinuiBechiratShana($event)">
+      </app-input-select>
+
+      <app-input-select
+        *ngIf="efsharuyotMidot.length"
+        [koteret]="'מימדים'"
+        [koteretPanel]="'בחר מימדים'"
+        [efsharuyot]="efsharuyotMidot"
+        [bechirots]="bechirotsMidot"
+        [tekstBecharHakol]="'הצג הכל'"
+        [tekstBitulHakol]="'בטל הכל'"
+        [tekstKolHaEfsharuyot]="'כל המימדים'"
+        [isMazigErech]="false"
+        [sugIcon]="'filter'"
+        (shinuiBechira)="onShinuiBechiratMidot($event)">
+      </app-input-select>
+    </div>
+
+    <!-- בורר שנים להערכות תקופתיות — כמו בפיגמה -->
+    <div
+      class="ezor-hashvaa__shanim-pills"
+      *ngIf="mazigBorerShanim"
+      role="group"
+      aria-label="בחירת שנה">
+      <button
+        type="button"
+        class="ezor-hashvaa__shana-btn"
+        *ngFor="let shana of shanimBorer; trackBy: trackByShana"
+        [class.ezor-hashvaa__shana-btn--pail]="shana === shanaNivcheret"
+        (click)="onBechiratShanaPilla(shana)">
+        {{ shana }}
+      </button>
+    </div>
+
+    <div
+      class="ezor-hashvaa__borer-tatzig"
+      *ngIf="mazigBorerTatzig"
+      role="group"
+      aria-label="סוג תצוגת גרף">
+      <button
+        type="button"
+        class="ezor-hashvaa__tatzig-btn"
+        [class.ezor-hashvaa__tatzig-btn--pail]="sugTatzigGraf === 'kav'"
+        (click)="onBechiratTatzig('kav')"
+        aria-label="תצוגת קו">
+        <svg
+          class="ezor-hashvaa__tatzig-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false">
+          <path d="M3 3v18h18"></path>
+          <path d="m19 9-5 5-4-4-3 3"></path>
+        </svg>
+        <span>קו</span>
+      </button>
+
+      <button
+        type="button"
+        class="ezor-hashvaa__tatzig-btn"
+        [class.ezor-hashvaa__tatzig-btn--pail]="sugTatzigGraf === 'amudot'"
+        (click)="onBechiratTatzig('amudot')"
+        aria-label="תצוגת עמודות">
+        <svg
+          class="ezor-hashvaa__tatzig-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false">
+          <path d="M3 3v18h18"></path>
+          <path d="M7 16v-5"></path>
+          <path d="M12 16V8"></path>
+          <path d="M17 16v-9"></path>
+        </svg>
+        <span>עמודות</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="ezor-hashvaa__scroll">
+    <div class="ezor-hashvaa__scroll-tochen">
+      <div class="ezor-hashvaa__blok-table">
+        <app-table
+          [netuneiTable]="netuneiTable"
+          (tzfiaMoamad)="onTzfiaMoamad($event)"
+          (peulatHaarcha)="onPeulatHaarcha($event)"
+          (lichitzatTa)="onLichitzatTa($event)">
+        </app-table>
+      </div>
+
+      <div class="ezor-hashvaa__blok-graf">
+        <app-line-chart
+          *ngIf="sugTatzigLeHatzaa === 'kav'"
+          [netuneiGraf]="netuneiGraf"
+          [govaGraf]="govaGraf">
+        </app-line-chart>
+
+        <app-column-chart
+          *ngIf="sugTatzigLeHatzaa === 'amudot'"
+          [netuneiGraf]="netuneiGraf"
+          [govaGraf]="govaGraf">
+        </app-column-chart>
+      </div>
+    </div>
+  </div>
+</div>

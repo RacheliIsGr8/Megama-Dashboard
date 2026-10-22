@@ -1,0 +1,21 @@
+<section class="maagar-moamadim">
+  <header class="maagar-moamadim__koteret">
+    <h2 class="maagar-moamadim__koteret-text">מאגר מועמדים</h2>
+    <span class="maagar-moamadim__kamut">{{ kamutMoamadim }} מועמדים</span>
+  </header>
+
+  <div class="maagar-moamadim__reshima" *ngIf="kamutMoamadim > 0">
+    <app-shurat-moamad
+      *ngFor="let moamad of moamadim; trackBy: trackByMoamadId"
+      [moamad]="moamad"
+      [isNivchar]="isMoamadNivchar(moamad)"
+      [colorLeMoamad]="getColorLeMoamad(moamad)"
+      (toggelBechira)="onToggelMoamad($event)"
+      (tzfiaBodedet)="onTzfiaBodedet($event)">
+    </app-shurat-moamad>
+  </div>
+
+  <div class="maagar-moamadim__empty" *ngIf="kamutMoamadim === 0">
+    <p>לא נמצאו מועמדים</p>
+  </div>
+</section>

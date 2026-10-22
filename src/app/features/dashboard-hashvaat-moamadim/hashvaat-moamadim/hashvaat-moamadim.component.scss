@@ -1,0 +1,381 @@
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+$color-bg: #f3f4f6;
+$color-surface: #ffffff;
+$color-text: #1f2937;
+$color-border: #e5e7eb;
+$color-primary: #1d4ed8;
+$color-toolbar: #1e40af;
+$color-label-bg: #f8fafc;
+$color-header-bg: #eef3f8;
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  direction: rtl;
+  font-family: $font-family;
+  box-sizing: border-box;
+  background: $color-bg;
+}
+
+.hashvaat-moamadim {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hashvaat-moamadim__toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 0.85rem 1.25rem;
+  background: $color-toolbar;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.hashvaat-moamadim__toolbar-start {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.hashvaat-moamadim__koteret {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+
+.hashvaat-moamadim__koteret-tafkid {
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.hashvaat-moamadim__toolbar-peulot {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hashvaat-moamadim__btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.hashvaat-moamadim__btn-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.hashvaat-moamadim__btn--hadpasa {
+  border: 0.0625rem solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+
+  &:hover {
+    background: #fff;
+    color: $color-primary;
+  }
+}
+
+.hashvaat-moamadim__btn--chazara {
+  border: 0;
+  background: #fff;
+  color: $color-primary;
+  font-weight: 600;
+
+  &:hover {
+    background: #eff6ff;
+  }
+}
+
+.hashvaat-moamadim__guf {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.hashvaat-moamadim__stepper-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 0.5rem;
+  position: sticky;
+  top: 1rem;
+  align-self: flex-start;
+  z-index: 8;
+}
+
+/** עד 5 מועמדים: כרטיס 80vw ממורכז, סטפר צף בצד (פיגמה) */
+.hashvaat-moamadim__guf--merukaz {
+  padding-inline: 0;
+
+  .hashvaat-moamadim__scroll {
+    width: 80vw;
+    max-width: 80vw;
+    flex: 0 1 auto;
+  }
+
+  .hashvaat-moamadim__stepper-wrap {
+    position: absolute;
+    top: 1rem;
+    inset-inline-start: 0.35rem;
+    margin: 0;
+  }
+}
+
+.hashvaat-moamadim__scroll {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: $color-surface;
+  border: 0.0625rem solid $color-border;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+.hashvaat-moamadim__scroll-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/** תוכן מלא ברוחב הכרטיס — כותרת + אקורדיון באותו קו */
+.hashvaat-moamadim__tokhen-merukaz {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/** ראש מועמדים — דביק, ממלא את רוחב המארז */
+.hashvaat-moamadim__sticky-rosh {
+  display: grid;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: $color-header-bg;
+  box-shadow: 0 0.0625rem 0.25rem rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+.hashvaat-moamadim__grid {
+  display: grid;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hashvaat-moamadim__label-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.35rem;
+  background: $color-label-bg;
+  border-bottom: 0.0625rem solid $color-border;
+  border-inline-end: 0.0625rem solid $color-border;
+  box-sizing: border-box;
+  position: sticky;
+  right: 0;
+  z-index: 2;
+}
+
+.hashvaat-moamadim__label-cell--header {
+  background: $color-header-bg;
+  border-bottom: 0;
+  border-inline-end: 0.0625rem solid $color-border;
+  z-index: 11;
+}
+
+.hashvaat-moamadim__label-tekst {
+  color: $color-text;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.hashvaat-moamadim__cell {
+  min-width: 0;
+  border-bottom: 0.0625rem solid $color-border;
+  border-inline-end: 0.0625rem solid $color-border;
+  box-sizing: border-box;
+  background: $color-surface;
+}
+
+.hashvaat-moamadim__cell--header {
+  border-bottom: 0;
+  padding-bottom: 0;
+  background: $color-header-bg;
+}
+
+.hashvaat-moamadim__cell--tziyunim {
+  border-bottom: 0.0625rem solid $color-border;
+  display: flex;
+  flex-direction: column;
+}
+
+.hashvaat-moamadim__cell--tziyunim > * {
+  flex: 1 1 auto;
+}
+
+.hashvaat-moamadim__rubrikot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 1.25rem 0 1.5rem;
+  box-sizing: border-box;
+  border-top: 0.0625rem solid $color-border;
+  background: #fafbfc;
+}
+
+.hashvaat-moamadim__rubrikot-koteret {
+  margin: 0;
+  padding: 0 1.25rem;
+  width: 100%;
+  color: $color-text;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1440px) {
+  .hashvaat-moamadim__guf {
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hashvaat-moamadim__toolbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .hashvaat-moamadim__koteret {
+    font-size: 0.9375rem;
+  }
+
+  .hashvaat-moamadim__guf {
+    flex-direction: column;
+  }
+
+  .hashvaat-moamadim__guf--merukaz {
+    padding-inline: 0.85rem;
+
+    .hashvaat-moamadim__scroll {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .hashvaat-moamadim__stepper-wrap {
+      position: static;
+      inset-inline-start: auto;
+    }
+  }
+
+  .hashvaat-moamadim__stepper-wrap {
+    position: static;
+    align-self: stretch;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hashvaat-moamadim__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hashvaat-moamadim__toolbar-peulot {
+    width: 100%;
+  }
+
+  .hashvaat-moamadim__btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .hashvaat-moamadim__guf {
+    padding: 0.5rem;
+  }
+
+  .hashvaat-moamadim__label-tekst {
+    font-size: 0.6875rem;
+  }
+
+  .hashvaat-moamadim__scroll {
+    max-width: 100%;
+  }
+
+  .hashvaat-moamadim__rubrikot {
+    padding: 1rem 0 1.25rem;
+  }
+
+  .hashvaat-moamadim__tokhen-merukaz {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .hashvaat-moamadim__sticky-rosh,
+  .hashvaat-moamadim__grid {
+    overflow-x: auto;
+  }
+
+  .hashvaat-moamadim__rubrikot-koteret {
+    padding: 0 0.75rem;
+    font-size: 0.9375rem;
+  }
+}

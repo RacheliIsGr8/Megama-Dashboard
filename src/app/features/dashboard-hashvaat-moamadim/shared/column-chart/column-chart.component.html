@@ -1,0 +1,39 @@
+<section
+  class="column-chart"
+  [style.--gova-graf]="govaGraf">
+  <!-- מקרא מועמדים למעלה (מצב השוואה) -->
+  <ul class="column-chart__legend" *ngIf="!isTziyurLeMidot && sidrotLeMafteach.length > 0">
+    <li
+      class="column-chart__legend-item"
+      *ngFor="let sidra of sidrotLeMafteach">
+      <span
+        class="column-chart__legend-swatch"
+        [style.background-color]="sidra.colorLeMoamad"
+        aria-hidden="true"></span>
+      <span
+        class="column-chart__legend-shem"
+        [style.color]="sidra.colorLeMoamad">
+        {{ sidra.shemMoamad }}
+      </span>
+    </li>
+  </ul>
+
+  <div class="column-chart__canvas-wrap">
+    <canvas #canvasGraf aria-label="גרף עמודות להשוואת מועמדים"></canvas>
+  </div>
+
+  <!-- מקרא מימדים למטה: עיגול צבע + מספר + שם -->
+  <ol class="column-chart__midot" *ngIf="midotLeMafteach.length > 0">
+    <li
+      class="column-chart__midda"
+      *ngFor="let midda of midotLeMafteach">
+      <span
+        class="column-chart__midda-swatch"
+        *ngIf="midda.color"
+        [style.background-color]="midda.color"
+        aria-hidden="true"></span>
+      <span class="column-chart__midda-mispar">{{ midda.mispar }}.</span>
+      <span class="column-chart__midda-shem">{{ midda.shem }}</span>
+    </li>
+  </ol>
+</section>

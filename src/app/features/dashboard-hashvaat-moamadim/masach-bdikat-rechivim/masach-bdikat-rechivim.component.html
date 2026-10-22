@@ -1,0 +1,105 @@
+<div class="masach-bdikat-rechivim">
+  <header class="masach-bdikat-rechivim__header">
+    <div class="masach-bdikat-rechivim__koteret-wrap">
+      <h1 class="masach-bdikat-rechivim__koteret">בדיקת רכיבים</h1>
+      <p class="masach-bdikat-rechivim__tezur">
+        מסך סנדבוקס להצגת רכיבי השוואת מועמדים
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="masach-bdikat-rechivim__btn-chazara"
+      (click)="onChazaraLebchira()"
+      aria-label="חזרה למסך בחירת מועמדים">
+      חזרה לבחירה
+    </button>
+  </header>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">Input Select</h2>
+    <div class="masach-bdikat-rechivim__kartis masach-bdikat-rechivim__kartis--sinunim">
+      <app-input-select
+        [koteret]="'שנה'"
+        [efsharuyot]="efsharuyotShana"
+        [bechirots]="bechirotsShana"
+        [tekstBecharHakol]="'בחר הכל'"
+        [tekstBitulHakol]="'בטל הכל'"
+        [tekstKolHaEfsharuyot]="'כל השנים'"
+        [isMazigErech]="true"
+        [sugIcon]="'none'"
+        (shinuiBechira)="onShinuiBechiratShana($event)">
+      </app-input-select>
+
+      <app-input-select
+        [koteret]="'מימדים'"
+        [koteretPanel]="'בחר מימדים'"
+        [efsharuyot]="efsharuyotMidot"
+        [bechirots]="bechirotsMidot"
+        [tekstBecharHakol]="'הצג הכל'"
+        [tekstBitulHakol]="'בטל הכל'"
+        [tekstKolHaEfsharuyot]="'כל המימדים'"
+        [isMazigErech]="false"
+        [sugIcon]="'filter'"
+        (shinuiBechira)="onShinuiBechiratMidot($event)">
+      </app-input-select>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">גרף קו</h2>
+    <div class="masach-bdikat-rechivim__kartis">
+      <app-line-chart
+        [netuneiGraf]="netuneiGraf"
+        [govaGraf]="'17.5rem'">
+      </app-line-chart>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">גרף עמודות — השוואת מועמדים</h2>
+    <div class="masach-bdikat-rechivim__kartis">
+      <app-column-chart
+        [netuneiGraf]="netuneiGraf"
+        [govaGraf]="'17.5rem'">
+      </app-column-chart>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">גרף עמודות — משוב כפיפים</h2>
+    <div class="masach-bdikat-rechivim__kartis">
+      <app-column-chart
+        [netuneiGraf]="netuneiGrafMeshuvKefifim"
+        [govaGraf]="'17.5rem'">
+      </app-column-chart>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">טבלת מועמדים</h2>
+    <div class="masach-bdikat-rechivim__kartis masach-bdikat-rechivim__kartis--scroll">
+      <app-table [netuneiTable]="netuneiTableMoamadim"></app-table>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">טבלת מימדים</h2>
+    <div class="masach-bdikat-rechivim__kartis masach-bdikat-rechivim__kartis--scroll">
+      <app-table [netuneiTable]="netuneiTable"></app-table>
+    </div>
+  </section>
+
+  <section class="masach-bdikat-rechivim__perek">
+    <h2 class="masach-bdikat-rechivim__perek-koteret">אקורדיון (טבלה + גרף)</h2>
+    <div class="masach-bdikat-rechivim__kartis">
+      <app-accordion
+        [prakim]="prakim"
+        [netuneiTable]="netuneiTable"
+        [netuneiGraf]="netuneiGraf"
+        [sugTatzigGraf]="sugTatzigGraf"
+        (sugTatzigGrafChange)="onSugTatzigGrafChange($event)">
+      </app-accordion>
+    </div>
+  </section>
+</div>

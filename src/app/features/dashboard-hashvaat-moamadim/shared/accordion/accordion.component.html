@@ -1,0 +1,69 @@
+<section class="accordion-hashvaa">
+  <article
+    class="accordion-hashvaa__perek"
+    *ngFor="let perek of prakim; trackBy: trackByPerek"
+    [attr.id]="getPerekDomId(perek)"
+    [class.accordion-hashvaa__perek--patuach]="isPatuach(perek)"
+    [class.accordion-hashvaa__perek--hashvaa]="isEzorHashvaa(perek)">
+
+    <button
+      type="button"
+      class="accordion-hashvaa__koteret"
+      [attr.aria-expanded]="isPatuach(perek)"
+      (click)="onToggelPerek(perek)">
+      <span class="accordion-hashvaa__koteret-tekst">{{ perek.koteret }}</span>
+      <svg
+        class="accordion-hashvaa__chevron"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </button>
+
+    <div class="accordion-hashvaa__tochen" *ngIf="isPatuach(perek)">
+
+      <p class="accordion-hashvaa__tekst" *ngIf="isTekst(perek)">
+        {{ perek.tochen }}
+      </p>
+
+      <app-accordion-reshima-amudot
+        *ngIf="isReshimaAmudot(perek)"
+        [moamadim]="moamadim"
+        [mafteachReshima]="perek.mafteachReshima"
+        [gridTemplateColumns]="gridTemplateColumns"
+        [gridMinWidth]="gridMinWidth">
+      </app-accordion-reshima-amudot>
+
+      <app-accordion-ezor-hashvaa
+        *ngIf="isEzorHashvaa(perek)"
+        [netuneiTable]="getNetuneiTableLePerek(perek)"
+        [netuneiGraf]="getNetuneiGrafLePerek(perek)"
+        [sugTatzigGraf]="sugTatzigGraf"
+        [govaGraf]="govaGraf"
+        [mazigSinunim]="isMazigSinunim(perek)"
+        [mazigBorerTatzig]="isMazigBorerTatzig(perek)"
+        [mazigBorerShanim]="isHaarchotTekufatiyot(perek)"
+        [shanimBorer]="shanimHaarchot"
+        [shanaNivcheret]="shanaHaarchot"
+        [efsharuyotShana]="efsharuyotShana"
+        [bechirotsShana]="bechirotsShana"
+        [efsharuyotMidot]="getEfsharuyotMidot(perek)"
+        [bechirotsMidot]="getBechirotsMidot(perek)"
+        (sugTatzigGrafChange)="onSugTatzigGrafChange($event)"
+        (shinuiBechiratShana)="onShinuiBechiratShana($event)"
+        (shinuiBechiratMidot)="onShinuiBechiratMidot(perek, $event)"
+        (shinuiShanaHaarchot)="onShinuiShanaHaarchot($event)"
+        (tzfiaMoamad)="onTzfiaMoamad($event)"
+        (peulatHaarcha)="onPeulatHaarcha($event)"
+        (lichitzatTa)="onLichitzatTa($event)">
+      </app-accordion-ezor-hashvaa>
+
+    </div>
+  </article>
+</section>

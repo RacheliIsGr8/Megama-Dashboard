@@ -1,0 +1,39 @@
+<div class="data-cube" [class.data-cube--patuach]="isPatuach">
+  <ul class="data-cube__reshima">
+    <li
+      class="data-cube__sadeh"
+      *ngFor="let sadeh of pratimIkarim; trackBy: trackByShem">
+      <span class="data-cube__shem">{{ sadeh.shemSadeh }}:</span>
+      <span class="data-cube__erech">{{ sadeh.erech }}</span>
+    </li>
+  </ul>
+
+  <ul class="data-cube__reshima data-cube__reshima--murhav" *ngIf="isPatuach">
+    <li
+      class="data-cube__sadeh"
+      *ngFor="let sadeh of pratimNosafim; trackBy: trackByShem">
+      <span class="data-cube__shem">{{ sadeh.shemSadeh }}:</span>
+      <span class="data-cube__erech">{{ sadeh.erech }}</span>
+    </li>
+  </ul>
+
+  <button
+    type="button"
+    class="data-cube__toggel"
+    (click)="onToggelPratim()">
+    {{ isPatuach ? 'פחות' : 'פרטים נוספים' }}
+    <svg
+      class="data-cube__toggel-icon"
+      [class.data-cube__toggel-icon--patuach]="isPatuach"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+</div>

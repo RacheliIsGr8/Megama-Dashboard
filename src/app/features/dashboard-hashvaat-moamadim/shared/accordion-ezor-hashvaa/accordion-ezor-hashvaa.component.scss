@@ -1,0 +1,206 @@
+$color-text: #172b4d;
+$color-text-muted: #6b778c;
+$color-bg: #ffffff;
+$color-primary: #155dfc;
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+$radius-btn: 0.625rem;
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  direction: rtl;
+  font-family: $font-family;
+}
+
+.ezor-hashvaa {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.ezor-hashvaa__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.ezor-hashvaa__sinunim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/** בורר שנים להערכות תקופתיות — כפתורים כמו בפיגמה */
+.ezor-hashvaa__shanim-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ezor-hashvaa__shana-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: $color-text-muted;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    color: $color-text;
+    background: rgba(21, 93, 252, 0.08);
+  }
+}
+
+.ezor-hashvaa__shana-btn--pail {
+  background: $color-primary;
+  color: #ffffff;
+
+  &:hover {
+    background: $color-primary;
+    color: #ffffff;
+  }
+}
+
+.ezor-hashvaa__borer-tatzig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  background: #f3f4f6;
+  border-radius: $radius-btn;
+}
+
+.ezor-hashvaa__tatzig-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.75rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: $color-text-muted;
+  font-family: $font-family;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    color: $color-text;
+    background: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.ezor-hashvaa__tatzig-btn--pail {
+  background: $color-bg;
+  color: $color-primary;
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.08);
+}
+
+.ezor-hashvaa__tatzig-icon {
+  display: block;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex-shrink: 0;
+}
+
+.ezor-hashvaa__scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+/**
+ * פיגמה: טבלה מימין + גרף משמאל בתוך אותו רוחב מארז.
+ * RTL flex-row: הילד הראשון (טבלה) מימין.
+ */
+.ezor-hashvaa__scroll-tochen {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ezor-hashvaa__blok-table {
+  flex: 1 1 55%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.ezor-hashvaa__blok-graf {
+  flex: 1 1 45%;
+  min-width: 12rem;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .ezor-hashvaa__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ezor-hashvaa__borer-tatzig {
+    width: 100%;
+  }
+
+  .ezor-hashvaa__tatzig-btn {
+    flex: 1 1 0;
+  }
+
+  .ezor-hashvaa__scroll-tochen {
+    flex-direction: column;
+  }
+
+  .ezor-hashvaa__blok-table,
+  .ezor-hashvaa__blok-graf {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ezor-hashvaa__tatzig-btn {
+    min-height: 2.5rem;
+  }
+}

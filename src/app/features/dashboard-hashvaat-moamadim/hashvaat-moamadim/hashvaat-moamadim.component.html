@@ -1,0 +1,165 @@
+<div class="hashvaat-moamadim" *ngIf="!isTaan && moamadim.length">
+
+  <header class="hashvaat-moamadim__toolbar">
+    <div class="hashvaat-moamadim__toolbar-start">
+      <h1 class="hashvaat-moamadim__koteret">
+        השוואת מועמדים
+        <span class="hashvaat-moamadim__koteret-tafkid" *ngIf="koteretTafkid">
+          – תפקיד: {{ koteretTafkid }}
+        </span>
+      </h1>
+    </div>
+
+    <div class="hashvaat-moamadim__toolbar-peulot">
+      <button
+        type="button"
+        class="hashvaat-moamadim__btn hashvaat-moamadim__btn--hadpasa"
+        (click)="onHadpasatDoch()">
+        <svg
+          class="hashvaat-moamadim__btn-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        הדפסת דוח
+      </button>
+
+      <button
+        type="button"
+        class="hashvaat-moamadim__btn hashvaat-moamadim__btn--chazara"
+        (click)="onChazaraLebchira()"
+        aria-label="חזרה לבחירת מועמדים">
+        <svg
+          class="hashvaat-moamadim__btn-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        חזרה לבחירה
+      </button>
+    </div>
+  </header>
+
+  <div
+    class="hashvaat-moamadim__guf"
+    [class.hashvaat-moamadim__guf--merukaz]="isHashvaaMerukazet">
+    <aside class="hashvaat-moamadim__stepper-wrap">
+      <app-stepper
+        [tzadim]="tzadimStepper"
+        [idPail]="idTzadPail"
+        (bechiratTzad)="onBechiratTzad($event)">
+      </app-stepper>
+    </aside>
+
+    <div class="hashvaat-moamadim__scroll">
+      <div class="hashvaat-moamadim__scroll-inner">
+        <!-- תוכן מלא בתוך כרטיס 80% ממורכז (עד 5 מועמדים) -->
+        <div
+          class="hashvaat-moamadim__tokhen-merukaz"
+          [style.width]="gridMinWidth"
+          [style.max-width]="'100%'">
+
+          <!-- ראש מועמדים דביק לאורך כל הגלילה כולל אקורדיונים -->
+          <div
+            class="hashvaat-moamadim__sticky-rosh"
+            [style.grid-template-columns]="gridTemplateColumns"
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            [cdkDropListData]="moamadim"
+            (cdkDropListDropped)="onShinuiSeder($event)">
+            <div class="hashvaat-moamadim__label-cell hashvaat-moamadim__label-cell--header"></div>
+            <div
+              class="hashvaat-moamadim__cell hashvaat-moamadim__cell--header"
+              *ngFor="let moamad of moamadim; trackBy: trackByMoamadId"
+              cdkDrag>
+              <app-moamd-data-header
+                [shemMale]="moamad.shemMale"
+                [gil]="moamad.gil"
+                [urlTmuna]="moamad.urlTmuna"
+                [colorLeMoamad]="moamad.colorLeMoamad"
+                (lichitzaDafMoamad)="onDafMoamad(moamad)">
+              </app-moamd-data-header>
+            </div>
+          </div>
+
+          <!-- גוף ההשוואה: פרטים + ציונים -->
+          <div
+            class="hashvaat-moamadim__grid"
+            [style.grid-template-columns]="gridTemplateColumns">
+
+            <div
+              id="pratim-ishiyim"
+              class="hashvaat-moamadim__label-cell">
+              <span class="hashvaat-moamadim__label-tekst">פרטים אישיים</span>
+            </div>
+            <div
+              class="hashvaat-moamadim__cell"
+              *ngFor="let moamad of moamadim; trackBy: trackByMoamadId">
+              <app-data-cube
+                [pratimIkarim]="moamad.pratimIkarim"
+                [pratimNosafim]="moamad.pratimNosafim"
+                [isPatuach]="isPratimPatuach(moamad)"
+                (toggelPratim)="onToggelPratim(moamad)">
+              </app-data-cube>
+            </div>
+
+            <div
+              id="tziyunim"
+              class="hashvaat-moamadim__label-cell">
+              <span class="hashvaat-moamadim__label-tekst">ציונים</span>
+            </div>
+            <div
+              class="hashvaat-moamadim__cell hashvaat-moamadim__cell--tziyunim"
+              *ngFor="let moamad of moamadim; trackBy: trackByMoamadId">
+              <app-tziyunim-moamad
+                [midot]="moamad.midot"
+                [merkazim]="moamad.merkazim"
+                [statusim]="moamad.statusim">
+              </app-tziyunim-moamad>
+            </div>
+          </div>
+
+          <!-- רובריקות הערכה ומידע מורחב -->
+          <section id="rubrikot" class="hashvaat-moamadim__rubrikot">
+            <h2 class="hashvaat-moamadim__rubrikot-koteret">
+              רובריקות הערכה ומידע מורחב
+            </h2>
+
+            <app-accordion
+              [prakim]="prakim"
+              [moamadim]="moamadim"
+              [netuneiTableLePerek]="netuneiTableLePerek"
+              [netuneiGrafLePerek]="netuneiGrafLePerek"
+              [sugTatzigGraf]="sugTatzigGraf"
+              [gridTemplateColumns]="gridTemplateColumns"
+              [gridMinWidth]="gridMinWidth"
+              [efsharuyotShana]="efsharuyotShana"
+              [bechirotsShana]="bechirotsShana"
+              [efsharuyotMidotLePerek]="efsharuyotMidotLePerek"
+              [bechirotsMidotLePerek]="bechirotsMidotLePerek"
+              [shanimHaarchot]="shanimHaarchot"
+              [shanaHaarchot]="shanaHaarchot"
+              (sugTatzigGrafChange)="onSugTatzigGrafChange($event)"
+              (shinuiBechiratShana)="onShinuiBechiratShana($event)"
+              (shinuiBechiratMidot)="onShinuiBechiratMidotMeAccordion($event)"
+              (shinuiShanaHaarchot)="onShinuiShanaHaarchot($event)"
+              (shinuiPerek)="onShinuiPerek($event)">
+            </app-accordion>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div
+  class="shurat-moamad"
+  [class.shurat-moamad--nivchar]="isNivchar">
+  <!-- Figma RTL justify-between: ימין = אבטאר+פרטים | שמאל = צפייה+בחירה -->
+  <div class="shurat-moamad__partei-wrap">
+    <app-tmunat-moamad
+      class="shurat-moamad__avatar"
+      [urlTmuna]="moamad?.urlTmuna || ''"
+      [shemMale]="moamad?.shemMale || ''"
+      [colorLeMoamad]="isNivchar && colorLeMoamad ? colorLeMoamad : '#d1d5db'"
+      [godel]="'2.125rem'"
+      [oviMisgeret]="isNivchar && colorLeMoamad ? '0.1875rem' : '0.125rem'">
+    </app-tmunat-moamad>
+
+    <div class="shurat-moamad__partei">
+      <div class="shurat-moamad__shem">{{ moamad?.shemMale }}</div>
+      <div class="shurat-moamad__pratim">
+        {{ moamad?.tafkid }} | {{ moamad?.machoz }} | מ"א: {{ moamad?.misparIshi }}
+      </div>
+    </div>
+  </div>
+
+  <div class="shurat-moamad__peulot">
+    <button
+      type="button"
+      class="shurat-moamad__tzfia"
+      (click)="onTzfiaBodedet()">
+      צפייה בודדת
+    </button>
+
+    <button
+      type="button"
+      class="shurat-moamad__bechira"
+      [class.shurat-moamad__bechira--nivchar]="isNivchar"
+      [attr.aria-pressed]="isNivchar"
+      [attr.aria-label]="isNivchar ? 'הסר מבחירה' : 'הוסף לבחירה'"
+      (click)="onToggelBechira()">
+      <svg
+        *ngIf="isNivchar"
+        class="icon-circle-check"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="m9 12 2 2 4-4"></path>
+      </svg>
+    </button>
+  </div>
+</div>

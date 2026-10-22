@@ -1,0 +1,307 @@
+$color-primary: #155dfc;
+$color-btn-hashvaa: #1447e6;
+$color-primary-disabled: #93b4fd;
+$color-text: #172b4d;
+$color-text-muted: #6b778c;
+$color-border: #e1e4e8;
+$color-bg: #ffffff;
+$color-empty-border: #d0d6dd;
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+$radius-panel: 0.875rem;
+$radius-item: 0.625rem;
+$radius-btn: 0.875rem;
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  direction: rtl;
+  font-family: $font-family;
+}
+
+.panel-nivcharim {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: 26rem;
+  padding: 1.25rem;
+  background: $color-bg;
+  border: 0;
+  border-radius: $radius-panel;
+  box-shadow:
+    0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1),
+    0 0.0625rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-family: $font-family;
+}
+
+.panel-nivcharim__koteret {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.panel-nivcharim__koteret-shura {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-nivcharim__icon-kvutza {
+  color: $color-primary;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.panel-nivcharim__koteret-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.3;
+  font-family: $font-family;
+}
+
+.panel-nivcharim__kamut {
+  font-weight: 500;
+  color: $color-text-muted;
+}
+
+.panel-nivcharim__ramaaz {
+  margin: 0;
+  font-size: 0.75rem;
+  color: $color-text-muted;
+  line-height: 1.4;
+}
+
+.panel-nivcharim__tochen {
+  flex: 1 1 auto;
+  min-height: 8rem;
+  min-width: 0;
+}
+
+.panel-nivcharim__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 10rem;
+  padding: 1.5rem 1rem;
+  border: 0.125rem dashed $color-empty-border;
+  border-radius: $radius-item;
+  box-sizing: border-box;
+}
+
+.panel-nivcharim__empty-icon {
+  color: $color-text-muted;
+  font-size: 1.75rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.panel-nivcharim__empty-text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+.panel-nivcharim__reshima {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+.kartis-moamad-nivchar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.625rem 0.75rem;
+  background: $color-bg;
+  border: 0.0625rem solid $color-border;
+  border-radius: $radius-item;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.kartis-moamad-nivchar__handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #d1d5db;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.kartis-moamad-nivchar__grip {
+  display: block;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.kartis-moamad-nivchar__mispar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kartis-moamad-nivchar__shem {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kartis-moamad-nivchar__hasara {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: #d1d5db;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-text;
+    background: rgba(9, 30, 66, 0.04);
+  }
+}
+
+.kartis-moamad-nivchar__x {
+  display: block;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.panel-nivcharim__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.panel-nivcharim__btn-hashvaa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: $radius-btn;
+  background-color: $color-btn-hashvaa;
+  color: #fff;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+
+  .icon-circle-check,
+  .panel-nivcharim__btn-v {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #1c398e;
+  }
+
+  &:disabled {
+    background-color: $color-primary-disabled;
+    color: #fff;
+    cursor: not-allowed;
+  }
+}
+
+.panel-nivcharim__heara {
+  margin: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: $radius-item;
+  box-shadow: 0 0.35rem 1rem rgba(9, 30, 66, 0.16);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.35;
+}
+
+.cdk-drag-animating {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.panel-nivcharim__reshima.cdk-drop-list-dragging .kartis-moamad-nivchar:not(.cdk-drag-placeholder) {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (max-width: 1440px) {
+  .panel-nivcharim {
+    padding: 1.125rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .panel-nivcharim {
+    min-height: 0;
+    padding: 1.125rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .panel-nivcharim {
+    padding: 1rem 0.875rem;
+    gap: 0.875rem;
+  }
+
+  .panel-nivcharim__btn-hashvaa {
+    min-height: 3rem;
+  }
+}

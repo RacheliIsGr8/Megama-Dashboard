@@ -1,0 +1,12 @@
+<section class="pakad-itur-megama">
+  <label class="pakad-itur-megama__sadeh">
+    <i class="pi pi-search pakad-itur-megama__icon" aria-hidden="true"></i>
+    <input
+      class="pakad-itur-megama__input"
+      type="search"
+      [value]="milatChinush"
+      placeholder="סנן לפי שם, ת.ז או מ&quot;א..."
+      aria-label="סינון מועמדים"
+      (input)="onMilatChinushInput($event)">
+  </label>
+</section>

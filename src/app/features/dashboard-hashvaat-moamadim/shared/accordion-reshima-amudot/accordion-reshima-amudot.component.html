@@ -1,0 +1,46 @@
+<div class="reshima-amudot">
+  <div
+    class="reshima-amudot__grid"
+    [style.grid-template-columns]="templateAmudot"
+    [style.min-width]="minWidthGrid">
+    <!-- מרווח יישור לעמודת התווית בטבלה הראשית -->
+    <div class="reshima-amudot__spacer" aria-hidden="true"></div>
+
+    <div
+      class="reshima-amudot__amuda"
+      *ngFor="let moamad of moamadim; trackBy: trackByMoamadId">
+      <div class="reshima-amudot__rosh">
+        <app-tmunat-moamad
+          [urlTmuna]="moamad.urlTmuna"
+          [shemMale]="moamad.shemMale"
+          [colorLeMoamad]="moamad.colorLeMoamad"
+          [godel]="'1.75rem'"
+          [oviMisgeret]="'0.125rem'">
+        </app-tmunat-moamad>
+        <span
+          class="reshima-amudot__shem"
+          [style.color]="moamad.colorLeMoamad">
+          {{ shemLeTatzig(moamad.shemMale) }}
+        </span>
+      </div>
+
+      <ul class="reshima-amudot__list">
+        <li
+          class="reshima-amudot__prat"
+          *ngFor="let prat of getReshima(moamad); trackBy: trackByReshima">
+          <span
+            class="reshima-amudot__shana"
+            *ngIf="prat.shana !== undefined && prat.shana !== null">
+            {{ prat.shana }}
+          </span>
+          <span class="reshima-amudot__tekst">{{ prat.tekst }}</span>
+        </li>
+        <li
+          class="reshima-amudot__prat reshima-amudot__prat--reik"
+          *ngIf="!getReshima(moamad).length">
+          אין נתונים
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

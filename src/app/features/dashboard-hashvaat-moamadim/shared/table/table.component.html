@@ -1,0 +1,163 @@
+<div class="table-responsive">
+  <table
+    class="table-hashvaa"
+    *ngIf="amudot.length > 0"
+    [style.width]="minWidthTable"
+    [style.min-width]="minWidthTable">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let amuda of amudot; trackBy: trackByAmuda"
+          class="table-hashvaa__koteret"
+          [ngClass]="getYishurClass(amuda)"
+          [style.color]="amuda.colorKoteret || null"
+          [style.width]="getMinWidthStyle(amuda)"
+          [style.min-width]="getMinWidthStyle(amuda)">
+          {{ amuda.koteret }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let shura of shurot; trackBy: trackByShura"
+        class="table-hashvaa__shura">
+        <td
+          *ngFor="let amuda of amudot; trackBy: trackByAmuda"
+          class="table-hashvaa__ta"
+          [ngClass]="getYishurClass(amuda)"
+          [style.width]="getMinWidthStyle(amuda)"
+          [style.min-width]="getMinWidthStyle(amuda)">
+
+          <!-- טקסט פשוט / מימד -->
+          <ng-container *ngIf="amuda.sug === 'text'">
+            <span class="table-hashvaa__tekst">{{ getTekstPashut(getErech(shura, amuda)) }}</span>
+          </ng-container>
+
+          <!-- שם מועמד (לחיץ) -->
+          <ng-container *ngIf="amuda.sug === 'shem-moamad'">
+            <button
+              type="button"
+              class="table-hashvaa__shem-moamad"
+              [style.color]="getShemMoamad(getErech(shura, amuda)).color || null"
+              (click)="onLichitzatShemMoamad(amuda, shura)">
+              {{ getShemMoamad(getErech(shura, amuda)).tekst }}
+            </button>
+          </ng-container>
+
+          <!-- ציון מספרי — עם הדגשת מקסימום בשורה -->
+          <ng-container *ngIf="amuda.sug === 'tziyun'">
+            <span
+              class="table-hashvaa__tziyun"
+              [class.table-hashvaa__tziyun--max]="isTziyunMaxBaShura(shura, amuda)">
+              {{ getTekstPashut(getErech(shura, amuda)) }}
+            </span>
+          </ng-container>
+
+          <!-- מיקום — תגית זהב / כסף / ארד -->
+          <ng-container *ngIf="amuda.sug === 'mikom'">
+            <span
+              class="table-hashvaa__tag table-hashvaa__tag--mikom"
+              [ngClass]="'table-hashvaa__tag--' + getSugMikom(getErech(shura, amuda))">
+              {{ getTekstMikom(getErech(shura, amuda)) }}
+            </span>
+          </ng-container>
+
+          <!-- ציון שנה — רקע ירוק עדין -->
+          <ng-container *ngIf="amuda.sug === 'tziyun-shana'">
+            <span class="table-hashvaa__tag table-hashvaa__tag--tziyun-shana">
+              {{ getTekstPashut(getErech(shura, amuda)) }}
+            </span>
+          </ng-container>
+
+          <!-- בולט לחיוב -->
+          <ng-container *ngIf="amuda.sug === 'bolet-lechiyuv'">
+            <span
+              *ngIf="getBolet(getErech(shura, amuda)).isBolet"
+              class="table-hashvaa__tag table-hashvaa__tag--bolet">
+              <span class="table-hashvaa__kochav" aria-hidden="true">*</span>
+              <span>{{ getBolet(getErech(shura, amuda)).tekst }}</span>
+            </span>
+            <span
+              *ngIf="!getBolet(getErech(shura, amuda)).isBolet"
+              class="table-hashvaa__tekst table-hashvaa__tekst--muted">
+              {{ getBolet(getErech(shura, amuda)).tekst }}
+            </span>
+          </ng-container>
+
+          <!-- מגמה -->
+          <ng-container *ngIf="amuda.sug === 'megama'">
+            <span
+              class="table-hashvaa__megama"
+              [ngClass]="'table-hashvaa__megama--' + getMegama(getErech(shura, amuda)).sug">
+              <svg
+                *ngIf="getMegama(getErech(shura, amuda)).sug === 'aliya'"
+                class="table-hashvaa__megama-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false">
+                <path d="M7 17 17 7"></path>
+                <path d="M7 7h10v10"></path>
+              </svg>
+              <span
+                *ngIf="getMegama(getErech(shura, amuda)).sug === 'yatziv'"
+                class="table-hashvaa__megama-dash"
+                aria-hidden="true">—</span>
+              <svg
+                *ngIf="getMegama(getErech(shura, amuda)).sug === 'yerida'"
+                class="table-hashvaa__megama-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false">
+                <path d="M7 7 17 17"></path>
+                <path d="M17 7v10H7"></path>
+              </svg>
+              <span class="table-hashvaa__megama-tekst">
+                {{ getMegama(getErech(shura, amuda)).tekst }}
+              </span>
+            </span>
+          </ng-container>
+
+          <!-- פעולת הערכה / קישור חיצוני -->
+          <ng-container *ngIf="amuda.sug === 'peulat-haarcha'">
+            <button
+              type="button"
+              class="table-hashvaa__peula"
+              aria-label="פתיחת הערכה"
+              (click)="onLichitzatHaarcha(amuda, shura)">
+              <svg
+                class="table-hashvaa__peula-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false">
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14 21 3"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              </svg>
+            </button>
+          </ng-container>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="table-hashvaa__empty" *ngIf="amudot.length === 0">
+    אין נתונים להצגה
+  </p>
+</div>

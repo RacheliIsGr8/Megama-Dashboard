@@ -1,0 +1,55 @@
+<!--
+  מעטפת פיצ'ר — בלי routing.
+  כל מסך הוא סלקטור שמוצג/מוסתר עם *ngIf לפי masachPail.
+-->
+
+<!-- מסך בחירת מועמדים -->
+<div
+  class="dashboard-hashvaat-moamadim"
+  *ngIf="isMasachBchira">
+  <div class="dashboard-hashvaat-moamadim__maagar">
+    <div class="dashboard-hashvaat-moamadim__toolbar">
+      <button
+        type="button"
+        class="dashboard-hashvaat-moamadim__btn-bdika"
+        (click)="onMaavarLebdikatRechivim()"
+        aria-label="מעבר למסך בדיקת רכיבים">
+        בדיקת רכיבים
+      </button>
+    </div>
+
+    <app-pakad-itur-megama
+      [sinun]="sinun"
+      (sinunChange)="onSinunChange($event)">
+    </app-pakad-itur-megama>
+
+    <app-bchirat-moamadim
+      [moamadim]="moamadimMesunanim"
+      [moamadimNivcharim]="moamadimNivcharim"
+      (toggelMoamad)="onToggelMoamad($event)"
+      (tzfiaBodedet)="onTzfiaBodedet($event)">
+    </app-bchirat-moamadim>
+  </div>
+
+  <aside class="dashboard-hashvaat-moamadim__panel">
+    <nivchru-le-hashvaa
+      [moamadimNivcharim]="moamadimNivcharim"
+      [minKamutLeHashvaa]="minKamutLeHashvaa"
+      (hasaratMoamad)="onHasaratMoamad($event)"
+      (shinuiSeder)="onShinuiSeder($event)"
+      (hatchalatHashvaa)="onHatchalatHashvaa()">
+    </nivchru-le-hashvaa>
+  </aside>
+</div>
+
+<!-- מסך השוואת מועמדים -->
+<app-hashvaat-moamadim
+  *ngIf="isMasachHashvaa"
+  (chazaraLebchira)="onChazaraLebchira()">
+</app-hashvaat-moamadim>
+
+<!-- מסך בדיקת רכיבים -->
+<app-masach-bdikat-rechivim
+  *ngIf="isMasachBdikatRechivim"
+  (chazaraLebchira)="onChazaraLebchira()">
+</app-masach-bdikat-rechivim>

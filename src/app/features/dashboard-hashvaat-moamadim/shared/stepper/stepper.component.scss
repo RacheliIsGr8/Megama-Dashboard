@@ -1,0 +1,64 @@
+$color-primary: #1d4ed8;
+$color-muted: #94a3b8;
+$color-surface: #ffffff;
+$color-border: #e5e7eb;
+
+:host {
+  display: block;
+  direction: rtl;
+}
+
+.stepper-tzad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.4rem;
+  background: $color-surface;
+  border: 0.0625rem solid $color-border;
+  border-radius: 999px;
+  box-shadow: 0 0.125rem 0.5rem rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+.stepper-tzad__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: $color-muted;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    color: $color-primary;
+    background: #eff6ff;
+  }
+}
+
+.stepper-tzad__item--pail {
+  color: $color-primary;
+  background: #dbeafe;
+}
+
+.stepper-tzad__icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .stepper-tzad {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 0.75rem;
+    padding: 0.4rem;
+    max-width: 100%;
+  }
+}

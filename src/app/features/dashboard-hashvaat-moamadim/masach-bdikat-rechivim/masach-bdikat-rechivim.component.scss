@@ -1,0 +1,162 @@
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  direction: rtl;
+  font-family: $font-family;
+  background: #f3f4f6;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.masach-bdikat-rechivim {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 2rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.masach-bdikat-rechivim__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.masach-bdikat-rechivim__koteret-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.masach-bdikat-rechivim__koteret {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.masach-bdikat-rechivim__tezur {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.masach-bdikat-rechivim__btn-chazara {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0.55rem 1rem;
+  border-radius: 0.625rem;
+  background: #fff;
+  border: 0.0625rem solid #e5e7eb;
+  color: #374151;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+  }
+}
+
+.masach-bdikat-rechivim__perek {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.masach-bdikat-rechivim__perek-koteret {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.masach-bdikat-rechivim__kartis {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 0.875rem;
+  background: #fff;
+  border: 0.0625rem solid #e5e7eb;
+  box-sizing: border-box;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.masach-bdikat-rechivim__kartis--scroll {
+  overflow-x: auto;
+}
+
+.masach-bdikat-rechivim__kartis--sinunim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1rem;
+  overflow: visible;
+}
+
+@media (max-width: 1440px) {
+  .masach-bdikat-rechivim {
+    max-width: 60rem;
+    padding: 1.75rem 1.125rem;
+    gap: 1.35rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .masach-bdikat-rechivim {
+    max-width: 48rem;
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .masach-bdikat-rechivim__kartis {
+    padding: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .masach-bdikat-rechivim {
+    padding: 1rem 0.75rem;
+    gap: 1.125rem;
+    max-width: 100%;
+  }
+
+  .masach-bdikat-rechivim__header {
+    flex-direction: column;
+  }
+
+  .masach-bdikat-rechivim__btn-chazara {
+    width: 100%;
+  }
+
+  .masach-bdikat-rechivim__koteret {
+    font-size: 1.25rem;
+  }
+
+  .masach-bdikat-rechivim__kartis {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+  }
+}

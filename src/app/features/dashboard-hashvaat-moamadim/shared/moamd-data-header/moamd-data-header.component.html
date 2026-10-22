@@ -1,0 +1,30 @@
+<div class="moamd-data-header" [style.--color-moamad]="colorLeMoamad">
+  <button
+    *ngIf="isMazigDrag"
+    type="button"
+    class="moamd-data-header__drag"
+    aria-label="גרירת מועמד"
+    cdkDragHandle>
+    <span class="moamd-data-header__drag-dot" *ngFor="let i of nekudotDrag"></span>
+  </button>
+
+  <app-tmunat-moamad
+    [urlTmuna]="urlTmuna"
+    [shemMale]="shemMale"
+    [colorLeMoamad]="colorLeMoamad"
+    [godel]="'4rem'"
+    [oviMisgeret]="'0.2rem'">
+  </app-tmunat-moamad>
+
+  <div class="moamd-data-header__shem">{{ shemMale }}</div>
+  <div class="moamd-data-header__gil" *ngIf="gil != null">גיל {{ gil }}</div>
+
+  <button
+    type="button"
+    class="moamd-data-header__daf"
+    (click)="onLichitzaDafMoamad()">
+    דף מועמד —
+  </button>
+
+  <div class="moamd-data-header__kav"></div>
+</div>

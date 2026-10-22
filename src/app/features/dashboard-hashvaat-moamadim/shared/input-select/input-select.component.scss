@@ -1,0 +1,296 @@
+$color-text: #1f2937;
+$color-text-muted: #6b7280;
+$color-border: #d1d5db;
+$color-border-panel: #e5e7eb;
+$color-border-rosh: #f3f4f6;
+$color-border-pail: #2563eb;
+$color-primary: #2563eb;
+$color-bg: #ffffff;
+$color-hover: #f9fafb;
+$color-checkbox-border: #d1d5db;
+$font-family: 'Heebo', 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+$radius-chitz: 0.625rem;   // 10px — rounded-lg בפיגמה
+$radius-panel: 0.875rem;   // 14px — rounded-xl בפיגמה
+$radius-checkbox: 0.25rem; // 4px — rounded
+
+:host {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  position: relative;
+  direction: rtl;
+  font-family: $font-family;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.input-select {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.input-select__chitz {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.375rem;
+  width: auto;
+  max-width: 100%;
+  min-height: 1.875rem;
+  padding: 0.375rem 0.75rem;
+  border: 0.0625rem solid $color-border;
+  border-radius: $radius-chitz;
+  background: $color-bg;
+  color: $color-text;
+  font-family: $font-family;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: darken($color-border, 8%);
+  }
+}
+
+.input-select__koteret-wrap {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.25rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.input-select--patuach .input-select__chitz {
+  border-color: $color-border-pail;
+  box-shadow: 0 0 0 0.0625rem rgba(37, 99, 235, 0.12);
+}
+
+.input-select__koteret-prefix {
+  color: $color-text-muted;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.input-select__koteret-erech {
+  color: $color-text;
+  font-weight: 600;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-select__koteret-erech--male {
+  font-weight: 500;
+}
+
+.input-select__icon {
+  display: block;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: $color-text-muted;
+}
+
+.input-select__icon--filter {
+  order: -1;
+  color: $color-text-muted;
+}
+
+.input-select__icon--chevron {
+  margin-inline-start: 0.125rem;
+  transition: transform 0.15s ease;
+}
+
+.input-select--patuach .input-select__icon--chevron {
+  transform: rotate(180deg);
+}
+
+.input-select__panel {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  z-index: 30;
+  min-width: 9rem;
+  width: max-content;
+  max-width: 20rem;
+  padding: 0.25rem 0;
+  background: $color-bg;
+  border: 0.0625rem solid $color-border-panel;
+  border-radius: $radius-panel;
+  box-shadow:
+    0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+    0 0.25rem 0.375rem -0.25rem rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.input-select__panel-rosh {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  border-bottom: 0.0625rem solid $color-border-rosh;
+}
+
+.input-select__panel-koteret {
+  color: $color-text-muted;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.input-select__bechar-hakol {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary;
+  font-family: $font-family;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.input-select__panel-rosh .input-select__panel-koteret + .input-select__bechar-hakol {
+  margin-inline-start: auto;
+}
+
+.input-select__reshima {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 16rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.input-select__item {
+  margin: 0;
+}
+
+.input-select__shura {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-family;
+  text-align: right;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover {
+    background: $color-hover;
+  }
+}
+
+.input-select__checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 0.0625rem solid $color-checkbox-border;
+  border-radius: $radius-checkbox;
+  background: $color-bg;
+  box-sizing: border-box;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.input-select__checkbox--nivchar {
+  background: $color-primary;
+  border-color: $color-primary;
+}
+
+.input-select__checkbox-icon {
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.input-select__shem {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: $color-text;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: right;
+}
+
+@media (max-width: 1440px) {
+  .input-select__panel {
+    max-width: 19rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .input-select__panel {
+    max-width: 18rem;
+  }
+
+  .input-select__reshima {
+    max-height: 14rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    display: block;
+    width: 100%;
+  }
+
+  .input-select,
+  .input-select__chitz {
+    width: 100%;
+  }
+
+  .input-select__chitz {
+    min-height: 2.5rem;
+    justify-content: flex-start;
+  }
+
+  .input-select__icon--chevron {
+    margin-inline-start: auto;
+  }
+
+  .input-select__panel {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .input-select__reshima {
+    max-height: 12rem;
+  }
+
+  .input-select__shura {
+    min-height: 2.5rem;
+  }
+}

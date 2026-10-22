@@ -1,0 +1,111 @@
+<div
+  class="input-select"
+  [class.input-select--patuach]="isPatuach">
+
+  <button
+    type="button"
+    class="input-select__chitz"
+    [attr.aria-expanded]="isPatuach"
+    [attr.aria-haspopup]="'listbox'"
+    (click)="onToggelPanel()">
+
+    <svg
+      *ngIf="sugIcon === 'filter'"
+      class="input-select__icon input-select__icon--filter"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+    </svg>
+
+    <ng-container *ngIf="isMazigErech && koteret; else koteretPashut">
+      <span class="input-select__koteret-wrap">
+        <span class="input-select__koteret-prefix">{{ koteret }}:</span>
+        <span class="input-select__koteret-erech">{{ tekstitErech }}</span>
+      </span>
+    </ng-container>
+
+    <ng-template #koteretPashut>
+      <span class="input-select__koteret-erech input-select__koteret-erech--male">
+        {{ koteret || tekstitErech }}
+      </span>
+    </ng-template>
+
+    <svg
+      class="input-select__icon input-select__icon--chevron"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <div
+    class="input-select__panel"
+    *ngIf="isPatuach"
+    role="listbox"
+    [attr.aria-label]="koteret || 'בחירה'">
+
+    <div class="input-select__panel-rosh">
+      <span
+        class="input-select__panel-koteret"
+        *ngIf="koteretPanel">
+        {{ koteretPanel }}
+      </span>
+
+      <button
+        type="button"
+        class="input-select__bechar-hakol"
+        (click)="onBecharHakol()">
+        {{ tekstPeulatHakol }}
+      </button>
+    </div>
+
+    <ul class="input-select__reshima">
+      <li
+        class="input-select__item"
+        *ngFor="let efsharut of efsharuyot; trackBy: trackByErech"
+        role="option"
+        [attr.aria-selected]="isNivchar(efsharut.erech)">
+        <button
+          type="button"
+          class="input-select__shura"
+          (click)="onToggelEfsharut(efsharut)">
+          <span
+            class="input-select__checkbox"
+            [class.input-select__checkbox--nivchar]="isNivchar(efsharut.erech)"
+            aria-hidden="true">
+            <!-- Lucide circle-check לבן על רקע כחול — כמו בפיגמה -->
+            <svg
+              *ngIf="isNivchar(efsharut.erech)"
+              class="input-select__checkbox-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </span>
+          <span class="input-select__shem">{{ efsharut.shem }}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
